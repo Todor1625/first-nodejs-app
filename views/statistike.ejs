@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="/1.css">
+</head>
+<body>
+	<h1>Meteoroloske statistike</h1>
+	<main>
+		<div id="levi">
+			<h2>Tekuce informacije</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Grad</th>
+						<th>Drzava</th>
+						<th>Najvisa temperatura</th>
+						<th>Prosecna temperatura</th>
+						<th>Najveca temperatura</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%for (const stat of statistike) { %>
+					<tr>
+						<th><%= stat.grad%></th>
+						<th><%= stat.drzava%></th>
+						<th><%= stat.min%></th>
+						<th><%= stat.avg%></th>
+						<th><%= stat.max%></th>
+					</tr>
+					<% } %>
+				</tbody>
+			</table>
+		</div>
+		<div id="desni">
+			<h2>Detaljne informacije</h2>
+			<form action="/meteo/detalji" method="post">
+				<p>Odaberite grad<span>*</span>:</p>
+				<select name="grad">
+					<%for (const stat of statistike) {%>
+					<option value="<%= stat.grad %>"><%= stat.grad %></option>
+					<% } %>
+				</select>
+				<p>Uredite po<span>*</span>:</p>
+				<input type="radio" name="uredjenje" value="opadajuce">Datumu opadajuce <br>
+				<input type="radio" name="uredjenje" value="rastuce">Datumu rastuce	<br>
+				<input type="submit" value="Prikazi detaljne informacije">
+			</form>
+		</div>
+	</main>
+	<script src="/3.js"></script>
+</body>
+</html>
